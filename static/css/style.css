@@ -1,0 +1,21 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f8fff4;
+    color: #212121;
+}
+
+.hero {
+    background: url('https://images.unsplash.com/photo-1543085694-358045617a78?fit=crop&w=1800&q=80') center/cover no-repeat;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    border-radius: 50px;
+    padding: 10px 30px;
+}

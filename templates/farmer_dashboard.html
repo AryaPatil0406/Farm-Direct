@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Farmer Dashboard{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="text-center text-success mb-4">Welcome, {{ user }}!</h2>
+  <p class="lead text-center">Manage your products and view market trends.</p>
+  <div class="text-center">
+    <a href="{{ url_for('product_form') }}" class="btn btn-primary m-2">Add Product</a>
+    <a href="{{ url_for('bank_details') }}" class="btn btn-warning text-dark m-2">Bank Details</a>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Add Product | FarmDirect{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="card p-4 mx-auto shadow" style="max-width:600px;">
+    <h2 class="text-center mb-4 text-success">Add Product</h2>
+
+    <form method="POST" action="{{ url_for('product_form') }}">
+      <!-- Product Name -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Product Name <span class="text-danger">*</span></label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          class="form-control" 
+          placeholder="Enter product name" 
+          required>
+      </div>
+
+      <!-- Category -->
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select id="category" name="category" class="form-select">
+          <option value="">Select Category</option>
+          <option value="Vegetables">Vegetables</option>
+          <option value="Fruits">Fruits</option>
+          <option value="Grains">Grains</option>
+          <option value="Pulses">Pulses</option>
+          <option value="Dairy">Dairy</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-3">
+        <label for="price" class="form-label">Price per kg (₹) <span class="text-danger">*</span></label>
+        <input 
+          type="number" 
+          step="0.01"
+          min="0"
+          id="price" 
+          name="price" 
+          class="form-control" 
+          placeholder="Enter price per kg" 
+          required>
+      </div>
+
+      <!-- Quantity -->
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity (kg) <span class="text-danger">*</span></label>
+        <input 
+          type="number" 
+          min="0"
+          id="quantity" 
+          name="quantity" 
+          class="form-control" 
+          placeholder="Enter available quantity in kg" 
+          required>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea 
+          id="description" 
+          name="description" 
+          class="form-control" 
+          rows="3" 
+          placeholder="Write a short description about your product"></textarea>
+      </div>
+
+      <!-- Image URL -->
+      <div class="mb-3">
+        <label for="image_url" class="form-label">Image URL</label>
+        <input 
+          type="url" 
+          id="image_url" 
+          name="image_url" 
+          class="form-control" 
+          placeholder="Paste product image link (optional)">
+        <small class="text-muted">Example: https://example.com/image.jpg</small>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100 mt-3">Add Product</button>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary w-100 mt-2">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

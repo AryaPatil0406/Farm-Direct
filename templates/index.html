@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Home | FarmDirect{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-success mb-3">Welcome to FarmDirect</h1>
+        <p class="lead text-muted">Connecting Farmers Directly with Customers</p>
+        <p class="text-secondary">Fresh produce from farm to your table, eliminating middlemen.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <span class="display-4">🌾</span>
+                    </div>
+                    <h5 class="card-title">For Farmers</h5>
+                    <p class="card-text">List your products and reach customers directly. Better prices, no middlemen.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <span class="display-4">🛒</span>
+                    </div>
+                    <h5 class="card-title">For Customers</h5>
+                    <p class="card-text">Buy fresh produce directly from farmers. Quality products at fair prices.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <span class="display-4">🤝</span>
+                    </div>
+                    <h5 class="card-title">Direct Connection</h5>
+                    <p class="card-text">Transparent pricing and direct communication between farmers and buyers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center">
+        <h3 class="mb-4">Get Started Today</h3>
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="{{ url_for('register') }}" class="btn btn-success btn-lg">Register Now</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-success btn-lg">Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

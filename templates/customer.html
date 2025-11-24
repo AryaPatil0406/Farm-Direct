@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Browse Products | FarmDirect{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-success">Available Products</h2>
+        <span class="badge bg-success">{{ products|length }} Products</span>
+    </div>
+
+    {% if products and products|length > 0 %}
+        <div class="row g-4">
+            {% for product in products %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    {% if product.image_url and product.image_url != '' %}
+                    <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="bg-light align-items-center justify-content-center" style="height: 200px; display: none;">
+                        <span class="text-muted fs-1">🌾</span>
+                    </div>
+                    {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <span class="text-muted fs-1">🌾</span>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        {% if product.category and product.category != '' %}
+                        <span class="badge bg-success mb-2">{{ product.category }}</span>
+                        {% endif %}
+                        {% if product.description and product.description != '' %}
+                        <p class="card-text text-muted small">{{ product.description[:100] }}{% if product.description|length > 100 %}...{% endif %}</p>
+                        {% else %}
+                        <p class="card-text text-muted small fst-italic">No description available</p>
+                        {% endif %}
+                        <div class="mb-2">
+                            <small class="text-muted">
+                                <strong>Farmer:</strong> 
+                                {% if product.farmer %}
+                                    {{ product.farmer.name }}
+                                {% else %}
+                                    Unknown
+                                {% endif %}
+                            </small>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fw-bold text-success fs-5">₹{{ "%.2f"|format(product.price|float) }}/kg</span>
+                            <span class="badge bg-secondary">{{ product.quantity }} kg</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top">
+                        <button class="btn btn-success w-100" onclick="alert('Contact: {{ product.farmer.phone if product.farmer and product.farmer.phone else product.farmer.email if product.farmer else \'Contact info not available\' }}')">
+                            <i>📞</i> Contact Farmer
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center py-5">
+            <div class="mb-3">
+                <span style="font-size: 4rem;">🌾</span>
+            </div>
+            <h4>No Products Available Yet</h4>
+            <p class="text-muted">Farmers haven't listed any products yet. Check back soon for fresh produce!</p>
+            {% if session.get('role') == 'farmer' %}
+            <a href="{{ url_for('product_form') }}" class="btn btn-success mt-3">Be the first to add a product!</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+<!-- Debug Info (Remove in production) -->
+{% if config.DEBUG %}
+<div class="container mt-3">
+    <div class="alert alert-info">
+        <strong>Debug Info:</strong> 
+        Total products in database: {{ products|length }}
+        {% if products %}
+        <br>Product IDs: {% for p in products %}{{ p.id }}{% if not loop.last %}, {% endif %}{% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
